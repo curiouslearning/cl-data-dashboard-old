@@ -2,12 +2,12 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 
-from dash import Dash, dcc, html
+import dash
+from dash import dcc, html
 import plotly.express as px
 import pandas as pd
 
-
-app = Dash(__name__)
+app = dash.Dash(__name__)
 
 df = pd.read_csv(
     'complete_count.csv')
@@ -18,6 +18,12 @@ fig.update_xaxes(showgrid=False)
 fig.update_yaxes(showgrid=False, type='linear')
 
 app.layout = html.Div([
+    html.Div(
+        className="app-header",
+        children=[
+            html.Div('Curious Learning Dashboard', className="app-header--title")
+        ]
+    ),
     html.H1('Completed Assessments'),
     html.H1(df['count'].sum()),
     dcc.Graph(
