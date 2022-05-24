@@ -35,16 +35,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.image.containerPort}}
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: {{ .Values.initialDelaySeconds }}
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: {{ .Values.initialDelaySeconds }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
