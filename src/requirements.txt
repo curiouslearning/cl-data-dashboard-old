@@ -1,0 +1,3 @@
+# see https://pip.pypa.io/en/stable/reference/requirements-file-format/ for formatting requirements
+pandas
+dash
